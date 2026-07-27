@@ -42,48 +42,50 @@
             animation: floatHeart 8s ease-in-out infinite;
             opacity: 0.6;
             pointer-events: none;
+            /* Убираем вращение */
+            transform: none !important;
         }
 
-        /* Анимация для сердечек - плавают вверх-вниз и двигаются по горизонтали */
+        /* Анимация для сердечек - плавают вверх-вниз и двигаются по горизонтали БЕЗ ВРАЩЕНИЯ */
         @keyframes floatHeart {
             0% {
-                transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+                transform: translateY(0) translateX(0) scale(1);
                 opacity: 0.3;
             }
             25% {
-                transform: translateY(-30px) translateX(20px) scale(1.1) rotate(5deg);
+                transform: translateY(-30px) translateX(20px) scale(1.1);
                 opacity: 0.7;
             }
             50% {
-                transform: translateY(-60px) translateX(-10px) scale(0.9) rotate(-5deg);
+                transform: translateY(-60px) translateX(-10px) scale(0.9);
                 opacity: 0.5;
             }
             75% {
-                transform: translateY(-30px) translateX(15px) scale(1.05) rotate(3deg);
+                transform: translateY(-30px) translateX(15px) scale(1.05);
                 opacity: 0.8;
             }
             100% {
-                transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+                transform: translateY(0) translateX(0) scale(1);
                 opacity: 0.3;
             }
         }
 
-        /* Вторая анимация для разнообразия - медленное вращение */
+        /* Вторая анимация для разнообразия - БЕЗ ВРАЩЕНИЯ */
         @keyframes floatHeartSlow {
             0% {
-                transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+                transform: translateY(0) translateX(0) scale(1);
                 opacity: 0.4;
             }
             33% {
-                transform: translateY(-40px) translateX(-15px) scale(1.2) rotate(-8deg);
+                transform: translateY(-40px) translateX(-15px) scale(1.2);
                 opacity: 0.8;
             }
             66% {
-                transform: translateY(-20px) translateX(20px) scale(0.8) rotate(8deg);
+                transform: translateY(-20px) translateX(20px) scale(0.8);
                 opacity: 0.6;
             }
             100% {
-                transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+                transform: translateY(0) translateX(0) scale(1);
                 opacity: 0.4;
             }
         }
@@ -235,11 +237,11 @@
         @keyframes floatUp {
             0% {
                 opacity: 1;
-                transform: translateY(0) scale(0.3) rotate(0deg);
+                transform: translateY(0) scale(0.3);
             }
             100% {
                 opacity: 0;
-                transform: translateY(-350px) scale(1.5) rotate(30deg);
+                transform: translateY(-350px) scale(1.5);
             }
         }
 
@@ -276,11 +278,11 @@
 
         @keyframes popIn {
             0% {
-                transform: scale(0.5) rotate(-5deg);
+                transform: scale(0.5);
                 opacity: 0;
             }
             100% {
-                transform: scale(1) rotate(0deg);
+                transform: scale(1);
                 opacity: 1;
             }
         }
@@ -344,14 +346,12 @@
             .buttons-wrapper {
                 gap: 15px;
             }
-            /* На телефонах сердечки становятся меньше и прозрачнее, чтобы не мешать */
             .floating-heart {
                 font-size: 1.2rem !important;
                 opacity: 0.3 !important;
             }
         }
 
-        /* На очень широких экранах делаем сердечки больше */
         @media (min-width: 1200px) {
             .floating-heart {
                 font-size: 3rem !important;
@@ -411,25 +411,19 @@
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
 
-            // Случайное сердечко из списка
             const randomHeart = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
             heart.textContent = randomHeart;
 
-            // Случайный размер от 1.2rem до 3.5rem
             const size = 1.2 + Math.random() * 2.3;
             heart.style.fontSize = size + 'rem';
 
-            // Случайное положение по горизонтали (только по бокам!)
             const side = Math.random();
             let leftPos;
             if (side < 0.35) {
-                // Левая сторона (0% - 15%)
                 leftPos = Math.random() * 15;
             } else if (side < 0.7) {
-                // Правая сторона (85% - 100%)
                 leftPos = 85 + Math.random() * 15;
             } else {
-                // Иногда чуть ближе к центру (для разнообразия) - 20%-30% или 70%-80%
                 if (Math.random() < 0.5) {
                     leftPos = 20 + Math.random() * 10;
                 } else {
@@ -438,47 +432,34 @@
             }
             heart.style.left = leftPos + '%';
 
-            // Случайное начальное положение по вертикали
             heart.style.top = (Math.random() * 100) + '%';
 
-            // Случайная задержка анимации (чтобы сердечки не двигались синхронно)
             const delay = Math.random() * 10;
             heart.style.animationDelay = delay + 's';
 
-            // Случайная скорость (длительность анимации)
             const duration = 6 + Math.random() * 8;
             heart.style.animationDuration = duration + 's';
 
-            // Случайная прозрачность
             heart.style.opacity = 0.2 + Math.random() * 0.5;
 
-            // Случайное вращение
-            const rotation = Math.random() * 360;
-            heart.style.transform = `rotate(${rotation}deg)`;
-
-            // Случайная анимация (два типа для разнообразия)
+            // Убираем вращение - просто оставляем как есть
             const animationType = Math.random() > 0.6 ? 'floatHeartSlow' : 'floatHeart';
             heart.style.animationName = animationType;
 
             container.appendChild(heart);
 
-            // Удаляем сердечко после окончания анимации + запас
             setTimeout(() => {
                 heart.remove();
             }, (duration + delay) * 1000 + 2000);
         }
 
-        // Создаём сердечки с интервалом
         function startHearts() {
-            // Сначала создаём 15-20 сердечек сразу, чтобы не было пусто
             for (let i = 0; i < 18; i++) {
                 setTimeout(createFloatingHeart, i * 300);
             }
-            // Затем продолжаем создавать каждые 1.5-2 секунды
             setInterval(createFloatingHeart, 1500 + Math.random() * 1000);
         }
 
-        // Запускаем после загрузки страницы
         startHearts();
 
         // =============================================
@@ -592,7 +573,6 @@
             }
         });
 
-        // Создаём контейнер для смайлов заранее
         if (!document.getElementById('sadEmojiContainer')) {
             const containerEmoji = document.createElement('div');
             containerEmoji.id = 'sadEmojiContainer';
