@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ура! ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #ffecd2 0%, #fcb69f 100%);
+            font-family: 'Georgia', serif;
+            padding: 20px;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Контейнер для летающих сердечек */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatHeart 8s ease-in-out infinite;
+            opacity: 0.6;
+            pointer-events: none;
+            transform: none !important;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px) scale(1.1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-60px) translateX(-10px) scale(0.9);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translateY(-30px) translateX(15px) scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes floatHeartSlow {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.4;
+            }
+            33% {
+                transform: translateY(-40px) translateX(-15px) scale(1.2);
+                opacity: 0.8;
+            }
+            66% {
+                transform: translateY(-20px) translateX(20px) scale(0.8);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.4;
+            }
+        }
+
+        /* Основная карточка */
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(15px);
+            padding: 40px 30px 45px 30px;
+            border-radius: 45px;
+            box-shadow: 0 30px 60px rgba(231, 76, 60, 0.2);
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hearts-top {
+            font-size: 3rem;
+            letter-spacing: 12px;
+            margin-bottom: 10px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .main-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .main-title .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .address-block {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            padding: 20px 20px 18px 20px;
+            border-radius: 25px;
+            margin: 10px 0 20px 0;
+            border: 2px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .address-text {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .address-text .icon {
+            font-size: 1.5rem;
+        }
+
+        .ps-text {
+            font-size: 1.1rem;
+            color: #555;
+            font-style: italic;
+            margin-top: 8px;
+            padding-top: 10px;
+            border-top: 2px dashed rgba(231, 76, 60, 0.2);
+        }
+
+        .ps-text strong {
+            color: #e74c3c;
+        }
+
+        /* Карта */
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 25px;
+            overflow: hidden;
+            margin: 15px 0 10px 0;
+            border: 3px solid rgba(255, 107, 107, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Кнопка "Назад" (необязательно, но пусть будет) */
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 35px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.3);
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(245, 87, 108, 0.5);
+        }
+
+        .back-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Адаптация для телефонов */
+        @media (max-width: 500px) {
+            .card {
+                padding: 25px 18px 30px 18px;
+            }
+            .main-title {
+                font-size: 1.5rem;
+            }
+            .address-text {
+                font-size: 1.1rem;
+            }
+            .ps-text {
+                font-size: 1rem;
+            }
+            .map-container {
+                height: 220px;
+            }
+            .floating-heart {
+                font-size: 1.2rem !important;
+                opacity: 0.3 !important;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .floating-heart {
+                font-size: 3rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ЛЕТАЮЩИЕ СЕРДЕЧКИ -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <div class="card">
+
+        <div class="hearts-top">🎉❤️‍🔥🎉</div>
+
+        <p class="main-title">
+            Ура, я знала,<br>что ты согласишься!! <span class="highlight">😋</span>
+        </p>
+
+        <div class="address-block">
+            <p class="address-text">
+                <span class="icon">📍</span> Буду ждать тебя по адресу<br>
+                <strong>ул. Большая Тульская, д. 13</strong>
+            </p>
+            <p class="ps-text">
+                <strong>P.S.</strong> Дресс-код официальный 🤵
+            </p>
+        </div>
+
+        <!-- КАРТА С МАРКЕРОМ -->
+        <div class="map-container">
+            <iframe 
+                src="https://yandex.ru/map-widget/v1/?um=constructor%3A1a2b3c4d5e6f7g8h9i0j&amp;source=constructor" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Кнопка "Назад" (на главную, если захочет перечитать) -->
+        <a href="index.html" class="back-btn">Вернуться 💕</a>
+
+    </div>
+
+    <script>
+        // =============================================
+        // ЛЕТАЮЩИЕ СЕРДЕЧКИ (такие же, как на первой странице)
+        // =============================================
+        const heartEmojis = ['❤️', '🩷', '❣️', '💕', '💞', '💓', '💗', '💖'];
+        const container = document.getElementById('heartsContainer');
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+
+            const randomHeart = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.textContent = randomHeart;
+
+            const size = 1.2 + Math.random() * 2.3;
+            heart.style.fontSize = size + 'rem';
+
+            const side = Math.random();
+            let leftPos;
+            if (side < 0.35) {
+                leftPos = Math.random() * 15;
+            } else if (side < 0.7) {
+                leftPos = 85 + Math.random() * 15;
+            } else {
+                if (Math.random() < 0.5) {
+                    leftPos = 20 + Math.random() * 10;
+                } else {
+                    leftPos = 70 + Math.random() * 10;
+                }
+            }
+            heart.style.left = leftPos + '%';
+            heart.style.top = (Math.random() * 100) + '%';
+
+            const delay = Math.random() * 10;
+            heart.style.animationDelay = delay + 's';
+
+            const duration = 6 + Math.random() * 8;
+            heart.style.animationDuration = duration + 's';
+
+            heart.style.opacity = 0.2 + Math.random() * 0.5;
+
+            const animationType = Math.random() > 0.6 ? 'floatHeartSlow' : 'floatHeart';
+            heart.style.animationName = animationType;
+
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, (duration + delay) * 1000 + 2000);
+        }
+
+        function startHearts() {
+            for (let i = 0; i < 18; i++) {
+                setTimeout(createFloatingHeart, i * 300);
+            }
+            setInterval(createFloatingHeart, 1500 + Math.random() * 1000);
+        }
+
+        startHearts();
+    </script>
+
+</body>
+</html>
