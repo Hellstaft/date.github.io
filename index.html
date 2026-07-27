@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 500px;
+        }
+        h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.3em;
+            color: #333;
+            line-height: 1.6;
+        }
+        .heart {
+            font-size: 3em;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: #e74c3c;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="heart">❤️</div>
+        <h1>Привет, любимая!</h1>
+        <p>Я приглашаю тебя на свидание.<br>Скажи "ДА" 😊</p>
+        <a href="#" class="btn">Я согласна! 💕</a>
+    </div>
+</body>
+</html>
