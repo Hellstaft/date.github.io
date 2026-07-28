@@ -24,7 +24,6 @@
             overflow-x: hidden;
         }
 
-        /* Контейнер для летающих сердечек */
         .hearts-container {
             position: fixed;
             top: 0;
@@ -87,7 +86,6 @@
             }
         }
 
-        /* Основная карточка */
         .card {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(15px);
@@ -148,6 +146,31 @@
             font-size: 1.5rem;
         }
 
+        .datetime-text {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            font-weight: 700;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .meeting-note {
+            font-size: 1.15rem;
+            color: #c0392b;
+            font-weight: 600;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid rgba(231, 76, 60, 0.15);
+            font-style: italic;
+            letter-spacing: 0.3px;
+        }
+
+        .meeting-note .heart-icon {
+            display: inline-block;
+            color: #e74c3c;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
         .ps-text {
             font-size: 1.1rem;
             color: #555;
@@ -161,34 +184,6 @@
             color: #e74c3c;
         }
 
-        /* Дата и время отдельно, изящно */
-.datetime-text {
-    font-size: 1.2rem;
-    color: #e74c3c;
-    font-weight: 700;
-    margin-top: 2px;
-    letter-spacing: 0.5px;
-}
-
-/* Приписка — в тонком, романтичном стиле */
-.meeting-note {
-    font-size: 1.15rem;
-    color: #c0392b;
-    font-weight: 600;
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 2px solid rgba(231, 76, 60, 0.15);
-    font-style: italic;
-    letter-spacing: 0.3px;
-}
-
-.meeting-note .heart-icon {
-    display: inline-block;
-    color: #e74c3c;
-    animation: sparkle 2s ease-in-out infinite;
-}
-
-        /* Карта */
         .map-container {
             width: 100%;
             height: 300px;
@@ -207,7 +202,6 @@
             display: block;
         }
 
-        /* Кнопка "Назад" (необязательно, но пусть будет) */
         .back-btn {
             display: inline-block;
             margin-top: 20px;
@@ -233,7 +227,6 @@
             transform: scale(0.95);
         }
 
-        /* Адаптация для телефонов */
         @media (max-width: 500px) {
             .card {
                 padding: 25px 18px 30px 18px;
@@ -243,6 +236,12 @@
             }
             .address-text {
                 font-size: 1.1rem;
+            }
+            .datetime-text {
+                font-size: 1rem;
+            }
+            .meeting-note {
+                font-size: 1rem;
             }
             .ps-text {
                 font-size: 1rem;
@@ -265,7 +264,6 @@
 </head>
 <body>
 
-    <!-- ЛЕТАЮЩИЕ СЕРДЕЧКИ -->
     <div class="hearts-container" id="heartsContainer"></div>
 
     <div class="card">
@@ -277,34 +275,36 @@
         </p>
 
         <div class="address-block">
-    <p class="address-text">
-        <span class="icon">📍</span> Буду ждать тебя по адресу<br>
-        <strong>ул. Большая Тульская, д. 13</strong>
-    </p>
-    
-    <p class="datetime-text">
-        29.07.2026 в 13:00
-    </p>
+            <p class="address-text">
+                <span class="icon">📍</span> Буду ждать тебя по адресу<br>
+                <strong>ул. Большая Тульская, д. 13</strong>
+            </p>
+            
+            <p class="datetime-text">
+                29.07.2026 в 13:00
+            </p>
 
-    <!-- Приписка в едином стиле -->
-    <p class="meeting-note">
-        встречаемся на Тульской, 2 выход <span class="heart-icon">❤</span>
-    </p>
+            <p class="meeting-note">
+                встречаемся на Тульской, 2 выход <span class="heart-icon">❤</span>
+            </p>
 
-    <p class="ps-text">
-        <strong>P.S.</strong> Дресс-код официальный 🤵
-    </p>
-</div>
+            <p class="ps-text">
+                <strong>P.S.</strong> Дресс-код официальный 🤵
+            </p>
+        </div>
 
-        <!-- Кнопка "Назад" (на главную, если захочет перечитать) -->
+        <div class="map-container">
+            <iframe 
+                src="https://yandex.ru/map-widget/v1/?ll=37.622091%2C55.708734&z=17&pt=37.622091%2C55.708734%2Cflag&l=map" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
         <a href="index.html" class="back-btn">Вернуться 💕</a>
 
     </div>
 
     <script>
-        // =============================================
-        // ЛЕТАЮЩИЕ СЕРДЕЧКИ (такие же, как на первой странице)
-        // =============================================
         const heartEmojis = ['❤️', '🩷', '❣️', '💕', '💞', '💓', '💗', '💖'];
         const container = document.getElementById('heartsContainer');
 
